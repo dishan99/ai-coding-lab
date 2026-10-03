@@ -1,15 +1,12 @@
+import Sidebar from "./components/Sidebar"
+import Dashboard from "./pages/Dashboard"
+
 function App() {
   return (
-    <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-5xl font-bold">
-          AI Coding Lab
-        </h1>
+    <div className="flex min-h-screen">
+      <Sidebar />
 
-        <p className="mt-4 text-slate-400">
-          Learn. Code. Debug. Improve.
-        </p>
-      </div>
+      <Dashboard />
     </div>
   )
 }
