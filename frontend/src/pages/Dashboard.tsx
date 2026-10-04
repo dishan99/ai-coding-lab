@@ -1,8 +1,22 @@
+import { useEffect, useState } from "react"
+
 import StatCard from "../components/StatCard"
 import CourseCard from "../components/CourseCard"
 import AITutorCard from "../components/AITutorCard"
+import { getApiInfo } from "../api/client"
 
 function Dashboard() {
+  const [apiStatus, setApiStatus] = useState("Connecting...")
+
+  useEffect(() => {
+    getApiInfo()
+      .then((data) => {
+        setApiStatus(data.status)
+      })
+      .catch(() => {
+        setApiStatus("Backend unavailable")
+      })
+  }, [])
   return (
     <main className="flex-1 bg-slate-100 p-4 sm:p-6 lg:p-8">
 
@@ -18,6 +32,10 @@ function Dashboard() {
 
         <p className="mt-2 text-slate-500">
           Ready to continue learning?
+        </p>
+
+        <p className="mt-2 text-xs text-slate-400">
+          Backend: {apiStatus}
         </p>
       </div>
 
