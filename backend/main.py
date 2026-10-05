@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from api.routes import health, info
+
 
 app = FastAPI(
     title="AI Coding Lab API",
@@ -20,24 +22,5 @@ app.add_middleware(
 )
 
 
-@app.get("/")
-def root():
-    return {
-        "message": "AI Coding Lab API is running"
-    }
-
-
-@app.get("/health")
-def health():
-    return {
-        "status": "healthy"
-    }
-
-
-@app.get("/api/info")
-def get_info():
-    return {
-        "name": "AI Coding Lab",
-        "version": "0.1.0",
-        "status": "development"
-    }
+app.include_router(health.router)
+app.include_router(info.router)
